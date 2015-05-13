@@ -8,10 +8,10 @@ def gcd(m, n):
 	return n
 
 class Fraction:
-
 	def __init__(self, top, bottom):
-		self.num = top;
-		self.den = bottom;
+		cd = gcd(top, bottom)
+		self.num = top//cd;
+		self.den = bottom//cd;
 
 	def __str__(self):
 		return str(self.num)+"/"+str(self.den);
@@ -22,29 +22,25 @@ class Fraction:
 	def get_den(self):
 		return self.den
 
-	def _make_simplified_fraction(self, num, den):
-		cd = gcd(num, den)
-		return Fraction(num//cd, den//cd)
-
 	def __add__(self, other):
 		new_num = self.num * other.den + self.den * other.num
 		new_den = self.den * other.den
-		return self._make_simplified_fraction(new_num, new_den)
+		return Fraction(new_num, new_den)
 
 	def __sub__(self, other):
 		new_num = self.num * other.den - self.den * other.num
 		new_den = self.den * other.den
-		return self._make_simplified_fraction(new_num, new_den)
+		return Fraction(new_num, new_den)
 
 	def __mul__(self, other):
 		new_num = self.num * other.num
 		new_den = self.den * other.den
-		return self._make_simplified_fraction(new_num, new_den)
-
+		return Fraction(new_num, new_den)
+		
 	def __div__(self, other):
 		new_num = self.num * other.den
 		new_den = self.den * other.num
-		return self._make_simplified_fraction(new_num, new_den)
+		return Fraction(new_num, new_den)
 
 	def _common_terms(self, other):
 		return (self.num * other.den, other.num * self.den)
