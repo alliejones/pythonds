@@ -36,7 +36,7 @@ class Fraction:
 		new_num = self.num * other.num
 		new_den = self.den * other.den
 		return Fraction(new_num, new_den)
-		
+
 	def __div__(self, other):
 		new_num = self.num * other.den
 		new_den = self.den * other.num
@@ -49,10 +49,22 @@ class Fraction:
 		first, second = self._common_terms(other)
 		return first == second
 
+	def __ne__(self, other):
+		first, second = self._common_terms(other)
+		return first != second
+
 	def __lt__(self, other):
 		first, second = self._common_terms(other)
 		return first < second
 
+	def __le__(self, other):
+		first, second = self._common_terms(other)
+		return first <= second
+
 	def __gt__(self, other):
 		first, second = self._common_terms(other)
 		return first > second
+
+	def __ge__(self, other):
+		first, second = self._common_terms(other)
+		return first >= second
